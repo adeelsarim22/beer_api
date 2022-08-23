@@ -1,6 +1,6 @@
 class Api::V1::BeersController < ApplicationController
   def index
-    @beers = Beer.by_name(params[:by_name]).order(id: :desc).page(params[:page] || 10).per(records_per_page)
+    @beers = Beer.by_name(params[:by_name]).order(id: :desc).page(params[:page] || 1).per(records_per_page)
     render json: @beers, each_serializer: BeerSerializer, meta: pagination_dict(@beers)
   end
 
