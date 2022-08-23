@@ -1,0 +1,17 @@
+development:
+  :concurrency: 20
+review:
+  :concurrency: <%= ENV['SIDEKIQ_MAX_THREADS'] || 10 %>
+
+staging:
+  :concurrency: <%= ENV['SIDEKIQ_MAX_THREADS'] || 10 %>
+
+production:
+  :concurrency: <%= ENV['SIDEKIQ_MAX_THREADS'] || 10 %>
+:queues:
+  - high
+  - default
+:schedule:
+  beer_punk_api_sync:
+    cron: '0 */3 * * *' #Run after every 3 hours
+    class: 'BeerPunkApiSync'
